@@ -26,11 +26,11 @@ namespace BallApp {
             PosX = xp;
             PosY = yp;
 
-            int rndX = rand.Next(-30, -30);
+            int rndX = rand.Next(-30, 30);
             moveX = (rndX != 0 ? rndX : 1);
 
-            int rndY = rand.Next(-30, -30);
-            moveX = (rndY != 0 ? rndY : 1);
+            int rndY = rand.Next(-30, 30);
+            moveY = (rndY != 0 ? rndY : 1);
         }
 
         //プロパティ
