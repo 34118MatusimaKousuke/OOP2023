@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BallApp {
-    class SoccerBall : Obj {
+    class TennisBall :Obj{
 
         Random rand = new Random();
 
         //コンストラクタ
-        public SoccerBall(double xp, double yp)
-            : base(xp, yp, "pic\\soccer_ball.png") {
+        public TennisBall(double xp, double yp)
+            : base(xp, yp, "pic\\tennis_ball.png") {
 
             int rndX = rand.Next(-30, 30);
             MoveX = (rndX != 0 ? rndX : 1);
