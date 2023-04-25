@@ -11,14 +11,10 @@ namespace BallApp {
         private Timer moveTimer; //タイマー用
         private SoccerBall soccerBall;
         private PictureBox pb;
-
         private TennisBall tennisBall;
 
-        private List<SoccerBall> balls = new List<SoccerBall>(); //ボール格納
-        private List<TennisBall> balls2 = new List<TennisBall>();
+        private List<Obj> balls = new List<Obj>(); //ボール格納
         private List<PictureBox> pbs = new List<PictureBox>(); //表示用
-        private List<PictureBox> pbs2 = new List<PictureBox>();
-
 
         private int sum = 0; //サッカーボールの数
         private int sum2 = 0; //テニスボールの数
@@ -58,14 +54,7 @@ namespace BallApp {
                 pb = new PictureBox(); //画像を表示するコントロール
                 pb.Image = soccerBall.Image;
                 pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);
-                pb.Size = new Size(50, 50); //画像表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage; //画像表示モード
-                pb.Parent = this;
-
                 balls.Add(soccerBall);
-                pbs.Add(pb);
-
-                moveTimer.Start(); //タイマースタート
             }
             else
             {
@@ -75,16 +64,13 @@ namespace BallApp {
                 pb = new PictureBox(); //画像を表示するコントロール
                 pb.Image = tennisBall.Image;
                 pb.Location = new Point((int)tennisBall.PosX, (int)tennisBall.PosY);
-                pb.Size = new Size(50, 50); //画像表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage; //画像表示モード
-                pb.Parent = this;
-
-                balls2.Add(tennisBall);
-                pbs2.Add(pb);
-
-                moveTimer.Start(); //タイマースタート
-
+                balls.Add(tennisBall);
             }
+            pb.Size = new Size(50, 50); //画像表示サイズ
+            pb.SizeMode = PictureBoxSizeMode.StretchImage; //画像表示モード
+            pb.Parent = this;
+            pbs.Add(pb);
+            moveTimer.Start(); //タイマースタート
         }
         //タイマータイムアウト用のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
@@ -94,12 +80,6 @@ namespace BallApp {
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
                 
-            }
-            for (int j = 0; j < balls2.Count; j++)
-            {
-                balls2[j].Move();
-                pbs2[j].Location = new Point((int)balls2[j].PosX, (int)balls2[j].PosY);
-                pbs2[j].Location = new Point((int)balls2[j].PosX, (int)balls2[j].PosY);
             }
         }
     }
