@@ -14,7 +14,7 @@ namespace BallApp {
         private double posY; //y座標
         private double moveX = 10; //移動量X
         private double moveY = 10; //移動量Y
-
+  
         //プロパティ
         public double PosX { get => posX; set => posX = value; }
         public double PosY { get => posY; set => posY = value; }
