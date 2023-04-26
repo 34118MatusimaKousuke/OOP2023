@@ -10,7 +10,7 @@ namespace BallApp {
 
         public Bar(double xp, double yp)
            : base(350, 400, "pic\\bar.png") {
-            base.MoveX = 10;
+            base.MoveX = 30;
             base.MoveY = 0;
 
         }
@@ -31,8 +31,8 @@ namespace BallApp {
             }
 
         }
-        public override void Move() {
-
+        public override void Move(PictureBox pbBar, PictureBox pbBall) {
+            ;
         }
     }
 }
