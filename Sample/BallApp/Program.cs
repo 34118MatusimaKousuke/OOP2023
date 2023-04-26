@@ -12,6 +12,10 @@ namespace BallApp {
         private Obj obj;
         private PictureBox pb;
 
+        Bar bar;
+        PictureBox pbBar;
+
+        //Listコレクション
         private List<Obj> balls = new List<Obj>(); //ボール格納
         private List<PictureBox> pbs = new List<PictureBox>(); //表示用
 
@@ -21,34 +25,33 @@ namespace BallApp {
         }
 
         public Program() {
-            //this.Width = 1200; //幅プロパティ
-            //this.Height = 800; // 高さプロパティ
-            this.Size = new Size(800, 600);
 
+            //フォーム
+            this.Size = new Size(800, 600);
             this.BackColor = Color.Green;
             this.Text = "BallGame";
 
             this.MouseClick += Program_MouseClick;
             this.KeyDown += Program_KeyDown;
 
+            //Barインスタンス生成
+            bar = new Bar(340 , 500);
+            pbBar = new PictureBox();
+            pbBar.Image = bar.Image;
+            pbBar.Location = new Point((int)bar.PosX,(int)bar.PosY);
+            pbBar.Size = new Size(150, 10);
+            pbBar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBar.Parent = this;
+
             moveTimer = new Timer();
             moveTimer.Interval = 1; //タイマーのインターバル
 
             moveTimer.Tick += MoveTimer_Tick;　//デリゲード登録
         }
-
-        //キーが押された時のイベントハンドラ
-        private void Program_KeyDown(object sender, KeyEventArgs e) {
-            if (e.KeyCode == Keys.A)
-            {
-
-            }
-
-        }
-
+        
         //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
-
+            
             if (e.Button == MouseButtons.Left)
             {
                 //サッカーボールインスタンス生成
@@ -72,6 +75,16 @@ namespace BallApp {
             pbs.Add(pb);
             moveTimer.Start(); //タイマースタート
         }
+
+
+
+        //キーが押された時のイベントハンドラ
+        private void Program_KeyDown(object sender, KeyEventArgs e) {
+                bar.Move(e.KeyData);
+                pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
+        }
+
+
         //タイマータイムアウト用のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
             for (int i = 0; i < balls.Count; i++)
