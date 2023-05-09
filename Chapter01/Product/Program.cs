@@ -33,22 +33,24 @@ namespace ProductSample {
             ////10日前を求める
             //DateTime daysbefore10 = date.AddDays(-10);
             //Console.WriteLine("十日前:" + daysbefore10.Year + "年" + daysbefore10.Month + "月" + daysbefore10.Day + "日");
-            #endregion 
+            #endregion
 
+            #region 演習2
             //生まれてからの日付を求める
             Console.WriteLine("誕生日入力");
-            Console.Write("西暦");
+            Console.Write("西暦:");
             string year = Console.ReadLine();
-            Console.Write("月");
+            Console.Write("月:");
             string month = Console.ReadLine();
-            Console.Write("日");
+            Console.Write("日:");
             string day = Console.ReadLine();
 
             DateTime date =  DateTime.Today;
             DateTime baseDay = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
             TimeSpan time = date - baseDay;
-            Console.WriteLine(time);
+            Console.WriteLine("あなたは生まれてから今日まで" + time.Days + "日目");
+            #endregion
         }
     }
 }
