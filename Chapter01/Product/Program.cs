@@ -51,6 +51,11 @@ namespace ProductSample {
             TimeSpan time = date - baseDay;
             Console.WriteLine("あなたは生まれてから今日まで" + time.Days + "日目");
             #endregion
+
+            #region 演習3
+            string days = baseDay.ToString("dddd");
+            Console.WriteLine("あなたは" + days + "に生まれました");
+            #endregion
         }
     }
 }
