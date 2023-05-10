@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DistanceConverter {
-    class Program : FeetConverter {
+    class Program  {
         static void Main(string[] args) {
             if (args.Length >= 1 && args[0] == "-tom") {
                 PrintFeetToMeterList(1, 10);
