@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exercise01 {
+    //2-1-1
     class Song {
 
         //歌のタイトル
@@ -16,10 +17,11 @@ namespace Exercise01 {
         //演奏時間
         public int Length { get; set; }
 
-        public Song(string title, string artistName, int Length) {
+        //2-1-2
+        public Song(string title, string artistName, int length) {
             Title = title;
             ArtistName = artistName;
-            Length = Length;
+            Length = length;
+        }
     }
-
 }
