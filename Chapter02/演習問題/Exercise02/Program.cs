@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
-            if (args.Length > 3) {
+            if (args.Length < 3) {
                 return;
             }
             if (args[0] == "-tom") {
