@@ -11,9 +11,16 @@ namespace Section04 {
                "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
             };
 
-            var query = names.Where(s => s.Length <= 5).Select(s => s.ToLower());
+            var query = names.Where(s => s.Length <= 5);
 
-            foreach (var s in names) {
+            foreach (var s in query) {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine("----------");
+
+            names[0] = "Osaka";
+
+             foreach (var s in query) {
                 Console.WriteLine(s);
             }
         }
