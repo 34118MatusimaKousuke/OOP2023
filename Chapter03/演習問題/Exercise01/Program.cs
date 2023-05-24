@@ -11,6 +11,7 @@ namespace Exercise01 {
 
             // 3.1.1
             Exercise1_1(numbers);
+            Console.WriteLine("-----");
 
             // 3.1.2
             Exercise1_2(numbers);
@@ -36,12 +37,21 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(List<int> numbers) {
+            var nums = numbers.ConvertAll(n => n / 2.0);
+            nums.ForEach(n => Console.WriteLine(n));
         }
 
         private static void Exercise1_3(List<int> numbers) {
+            var query = numbers.Where(n => n >= 50);
+            foreach (var n in query) {
+                Console.WriteLine(n);
+            }
         }
-
         private static void Exercise1_4(List<int> numbers) {
+            var list = numbers.Select(n => n * 2).ToList();
+            foreach (var n in list) {
+                Console.WriteLine(n);
+            }
         }
     }
 }
