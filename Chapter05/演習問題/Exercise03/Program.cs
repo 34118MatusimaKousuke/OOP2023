@@ -53,7 +53,7 @@ namespace Exercise03 {
                 sb.Append(s + ' ');
             }
             var t1 = sb.ToString();
-            Console.WriteLine(t1);
+            Console.WriteLine(t1.TrimEnd());
         }
     }
 }
