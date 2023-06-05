@@ -30,21 +30,19 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_2(string text) {
-            var replaced = text.Replace("big","small");
+            var replaced = text.Replace("big", "small");
             Console.WriteLine(replaced);
         }
 
         private static void Exercise3_3(string text) {
             var count = text.Split(' ').Count();
-            Console.WriteLine("単語数："+ count);
+            Console.WriteLine("単語数：" + count);
         }
 
         private static void Exercise3_4(string text) {
-            var count = text.Split(' ');
+            var count = text.Split(' ').Where(s => s.Length <= 4);
             foreach (var s in count) {
-                if (s.Length <= 4) {
-                    Console.WriteLine(s);
-                }
+                Console.WriteLine(s);
             }
         }
 
