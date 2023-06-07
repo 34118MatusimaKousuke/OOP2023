@@ -41,12 +41,19 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
+            var name = books.Where(s => s.Title.Contains("ワンダフル・C#ライフ"));
+            foreach (var s in name) {
+                Console.WriteLine("価格：" + s.Price + " ページ数：" + s.Pages);
+            }
         }
 
         private static void Exercise2_2(List<Book> books) {
+            var count = books.Where(s => s.Title.Contains("C#")).Count();
+            Console.WriteLine(count + "冊");
         }
 
         private static void Exercise2_3(List<Book> books) {
+            var avg = books.Where(s => s.Title.Contains("C#"));
         }
 
         private static void Exercise2_4(List<Book> books) {
@@ -64,7 +71,7 @@ namespace Exercise02 {
 
     class Book {
         public string Title { get; set; }
-        public string Price { get; set; }
-        public string Pages { get; set; }
+        public int Price { get; set; }
+        public int Pages { get; set; }
     }
 }

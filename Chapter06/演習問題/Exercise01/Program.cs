@@ -50,10 +50,8 @@ namespace Exercise01 {
             }
         }
         private static void Exercise1_5(int[] numbers) {
-            var num = numbers.Distinct().Where(s => s > 10);
-            foreach (var s in num) {
-                Console.WriteLine(s);
-            }
+            var num = numbers.Distinct().Where(s => s > 10).Count();
+            Console.WriteLine(num);
         }
     }
 }
