@@ -72,7 +72,7 @@ namespace Exercise02 {
         private static void Exercise2_6(List<Book> books) {
             var pay = books.Where(s => s.Pages >= 400).OrderByDescending(s => s.Price);
             foreach (var s in pay) {
-                Console.WriteLine(s.Title);
+                Console.WriteLine(s.Title + "：" +  s.Price + "円");
             }
         }
 
