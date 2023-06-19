@@ -48,7 +48,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<Book> books) {
-            var count = books.Where(s => s.Title.Contains("C#")).Count();
+            var count = books.Count(s => s.Title.Contains("C#"));
             Console.WriteLine(count + "冊");
         }
 
