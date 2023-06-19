@@ -58,15 +58,29 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<Book> books) {
+            var price = books.Where(s => s.Price >= 4000).Take(1);
+            foreach (var s in price) {
+                Console.WriteLine(s.Title);
+            }
         }
 
         private static void Exercise2_5(List<Book> books) {
+            var max = books.Where(s => s.Price < 4000).Max(s => s.Pages);
+            Console.WriteLine(max);
         }
 
         private static void Exercise2_6(List<Book> books) {
+            var pay = books.Where(s => s.Pages >= 400).OrderByDescending(s => s.Price);
+            foreach (var s in pay) {
+                Console.WriteLine(s.Title);
+            }
         }
 
         private static void Exercise2_7(List<Book> books) {
+            var name = books.Where(s => s.Title.Contains("C#")).Where(s => s.Pages <= 500);
+            foreach (var s in name) {
+                Console.WriteLine(s.Title);
+            }
         }
     }
 
