@@ -27,25 +27,28 @@ namespace Section01 {
 
             Console.WriteLine("県庁所在地の登録");
 
-            var prefectureDict = new Dictionary<string, string>();
+            var prefectureDict = new Dictionary<string, CityInfo>();    
             Console.Write("県名：");
             var prefecturename = Console.ReadLine();
 
             while (prefecturename != "999") {
+                var cityinfo = new CityInfo();
                 Console.Write("所在地：");
-                var prefecturename1 = Console.ReadLine();
+                cityinfo.City = Console.ReadLine();
+                Console.Write("人口：");
+                cityinfo.Population = int.Parse(Console.ReadLine());
 
                 if (prefectureDict.ContainsKey(prefecturename)) {
                     Console.WriteLine("もうすでに{0}県は登録されています上書きしますか？", prefecturename);
                     Console.WriteLine("上書き：0 上書きしない：1");
                     var judge = Console.ReadLine();
                     if (int.Parse(judge) == 0) {
-                        prefectureDict[prefecturename] = prefecturename1;
+                        prefectureDict[prefecturename] = cityinfo;
                     }   
                 }
                 else {
-                    prefectureDict[prefecturename] = prefecturename1;
-                    
+                    prefectureDict[prefecturename] = cityinfo;
+
                 }
                 Console.Write("県名：");
                 prefecturename = Console.ReadLine();
@@ -54,19 +57,21 @@ namespace Section01 {
             Console.Write("＞");
             var judgement = Console.ReadLine();
             if (int.Parse(judgement) == 1) {
-                foreach (var s in prefectureDict) {
-                    Console.WriteLine("{0}({1})",s.Key,s.Value);
+                var pre = prefectureDict.OrderByDescending(s => s.Value.Population);
+                foreach (var s in pre) {
+                    Console.WriteLine("{0}{1}{2}",s.Key,s.Value.City,s.Value.Population);
                 }
             }else if (int.Parse(judgement) == 2) {
                 Console.Write("県名：");
                 var prefecturename2 = Console.ReadLine();
-                Console.WriteLine("{0}です", prefectureDict[prefecturename2]);
+                Console.WriteLine("{0}県", prefectureDict[prefecturename2].City);
+                Console.WriteLine("人口：{0}人",prefectureDict[prefecturename2].Population);
             }
         }
     }
 
     class CityInfo {
-        string City { get; set; }
-        string Population { get; set; }
+        public string City { get; set; } //都市
+        public int Population { get; set; } //人口
     }
 }
