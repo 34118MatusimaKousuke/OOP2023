@@ -53,9 +53,8 @@ namespace Section02 {
             if (int.Parse(judgement) == 1) {
                 foreach (var s in prefectureDict) {
                     Console.WriteLine("<<<<<{0}>>>>>",s.Key);
-                    foreach (var n in s.Value) {
-                        Console.WriteLine("{0} {1}人",n.City,n.Population);
-
+                    foreach (var n in s.Value.OrderByDescending(n => n.Population)) {
+                        Console.WriteLine("{0} {1}人", n.City, n.Population);
                     }
                     Console.WriteLine();
                 }
@@ -63,8 +62,9 @@ namespace Section02 {
             else if (int.Parse(judgement) == 2) {
                 Console.Write("県名：");
                 var prefecturename2 = Console.ReadLine();
+                var pre = prefectureDict[prefecturename2].OrderByDescending(s => s.Population);
                 Console.WriteLine("<<<<<{0}>>>>>",prefecturename2);
-                foreach (var s in prefectureDict[prefecturename2]) {
+                foreach (var s in pre) {
                     Console.WriteLine("{0}：{1}人", s.City, s.Population);
                 }
             }
