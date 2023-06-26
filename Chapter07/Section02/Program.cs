@@ -62,9 +62,8 @@ namespace Section02 {
             else if (int.Parse(judgement) == 2) {
                 Console.Write("県名：");
                 var prefecturename2 = Console.ReadLine();
-                var pre = prefectureDict[prefecturename2].OrderByDescending(s => s.Population);
                 Console.WriteLine("<<<<<{0}>>>>>",prefecturename2);
-                foreach (var s in pre) {
+                foreach (var s in prefectureDict[prefecturename2].OrderByDescending(s => s.Population)) {
                     Console.WriteLine("{0}：{1}人", s.City, s.Population);
                 }
             }
