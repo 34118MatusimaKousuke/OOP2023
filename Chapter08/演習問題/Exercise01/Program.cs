@@ -17,8 +17,7 @@ namespace Exercise01 {
         }
 
         private static void DisplayDatePattern1(DateTime dateTime) {
-            var s6 = dateTime.ToString("f");
-            Console.WriteLine(s6);
+            Console.WriteLine("{0} {1}",dateTime.ToString("d"),dateTime.ToString("t"));
         }
 
         private static void DisplayDatePattern2(DateTime dateTime) {
