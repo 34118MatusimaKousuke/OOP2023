@@ -55,6 +55,7 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
+            btModifyReport.Enabled = false; //マスク処理
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -63,13 +64,46 @@ namespace CarReportSystem {
             dgvCarReports.CurrentRow.Cells[2].Value = getSalectedMaker();
             dgvCarReports.CurrentRow.Cells[3].Value = cbCarName.Text;
             dgvCarReports.CurrentRow.Cells[4].Value = tbReport.Text;
+            dgvCarReports.Refresh(); //一覧更新
         }
 
         private void dgvCarReports_CellContentClick(object sender, DataGridViewCellEventArgs e) {
             dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
             cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+            setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+        }
+
+        private void setSelectedMaker(CarReport.MakerGroup makerGroup) {
+            switch (makerGroup) {
+                case CarReport.MakerGroup.トヨタ:
+                    rbToyota.Checked = true;
+                    break;
+                case CarReport.MakerGroup.日産:
+                    rbNissan.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ホンダ:
+                    rbHonda.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スバル:
+                    rbSubaru.Checked = true;
+                    break;
+                case CarReport.MakerGroup.スズキ:
+                    rbSuzuki.Checked = true;
+                    break;
+                case CarReport.MakerGroup.ダイハツ:
+                    rbDaihatu.Checked = true;
+                    break;
+                case CarReport.MakerGroup.輸入車:
+                    rbImported.Checked = true;
+                    break;
+                case CarReport.MakerGroup.その他:
+                    rbOther.Checked = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
