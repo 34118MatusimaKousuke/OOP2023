@@ -66,6 +66,7 @@ namespace CarReportSystem {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
+            this.btScaleChange = new System.Windows.Forms.Button();
             label3 = new System.Windows.Forms.Label();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
@@ -463,12 +464,23 @@ namespace CarReportSystem {
             this.tsInfoText.Size = new System.Drawing.Size(118, 17);
             this.tsInfoText.Text = "toolStripStatusLabel1";
             // 
+            // btScaleChange
+            // 
+            this.btScaleChange.Location = new System.Drawing.Point(763, 37);
+            this.btScaleChange.Name = "btScaleChange";
+            this.btScaleChange.Size = new System.Drawing.Size(75, 23);
+            this.btScaleChange.TabIndex = 27;
+            this.btScaleChange.Text = "サイズ変更";
+            this.btScaleChange.UseVisualStyleBackColor = true;
+            this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(858, 646);
+            this.Controls.Add(this.btScaleChange);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btModifyReport);
             this.Controls.Add(this.btDeleteReport);
@@ -552,6 +564,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
+        private System.Windows.Forms.Button btScaleChange;
     }
 }
 
