@@ -29,9 +29,10 @@ namespace CarReportSystem {
         private void btAddReport_Click(object sender, EventArgs e) {
             statasLavelDisp(); //表示クリア
             if (cbAuthor.Text == "") {
-                statasLavelDisp("記録者を入力してください"); 
+                statasLavelDisp("記録者を入力してください");
                 return;
-            }else if (cbCarName.Text == "") {
+            }
+            else if (cbCarName.Text == "") {
                 statasLavelDisp("車名を入力してください");
                 return;
             }
@@ -45,15 +46,23 @@ namespace CarReportSystem {
             };
             CarReports.Add(CarReport);
 
-            if (cbAuthor.Items.Contains(cbAuthor.Text) == false) {
-                cbAuthor.Items.Add(cbAuthor.Text);
-            }
-            if (cbCarName.Items.Contains(cbCarName.Text) == false) {
-                cbCarName.Items.Add(cbCarName.Text);
-            }
+            setCbAuthor(cbAuthor.Text);
+            setCbCarName(cbCarName.Text);
             Clear(); //項目クリア
 
             enabledFalse(); //マスク処理
+        }
+
+        private void setCbCarName(string author) {
+            if (cbCarName.Items.Contains(author) == false) {
+                cbCarName.Items.Add(author);
+            }
+        }
+
+        private void setCbAuthor(string carname) {
+            if (cbAuthor.Items.Contains(carname) == false) {
+                cbAuthor.Items.Add(carname);
+            }
         }
 
         private CarReport.MakerGroup getSalectedMaker() {
@@ -173,6 +182,9 @@ namespace CarReportSystem {
             pbCarImage.Image = null;
         }
 
-       
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            cdColor.ShowDialog();
+            this.BackColor = cdColor.Color;
+        }
     }
 }
