@@ -16,10 +16,25 @@ namespace CarReportSystem {
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
+
+        }
+
+        //ステータスラベルのテキストの表示・非表示
+        private void statasLavelDisp(string msg = "") {
+            //MessageBox.Show(msg);
+            tsInfoText.Text = msg;
         }
 
         //追加ボタンがクリックされた時のイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
+            statasLavelDisp(); //表示クリア
+            if (cbAuthor.Text == "") {
+                statasLavelDisp("記録者を入力してください"); 
+                return;
+            }else if (cbCarName.Text == "") {
+                statasLavelDisp("車名を入力してください");
+                return;
+            }
             var CarReport = new CarReport() {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -29,6 +44,16 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
             };
             CarReports.Add(CarReport);
+
+            if (cbAuthor.Items.Contains(cbAuthor.Text) == false) {
+                cbAuthor.Items.Add(cbAuthor.Text);
+            }
+            if (cbCarName.Items.Contains(cbCarName.Text) == false) {
+                cbCarName.Items.Add(cbCarName.Text);
+            }
+            Clear(); //項目クリア
+
+            enabledFalse(); //マスク処理
         }
 
         private CarReport.MakerGroup getSalectedMaker() {
@@ -51,11 +76,17 @@ namespace CarReportSystem {
                     dgvCarReports.Rows.Remove(r);
                 }
             }
+            if (dgvCarReports.RowCount == 0) {
+                btDeleteReport.Enabled = false;
+                btModifyReport.Enabled = false; //マスク処理
+            }
+            Clear();
+            enabledFalse(); //マスク処理
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
-            btModifyReport.Enabled = false; //マスク処理
+            enabledFalse(); //マスク処理
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -64,15 +95,24 @@ namespace CarReportSystem {
             dgvCarReports.CurrentRow.Cells[2].Value = getSalectedMaker();
             dgvCarReports.CurrentRow.Cells[3].Value = cbCarName.Text;
             dgvCarReports.CurrentRow.Cells[4].Value = tbReport.Text;
+            dgvCarReports.CurrentRow.Cells[5].Value = pbCarImage.Image;
             dgvCarReports.Refresh(); //一覧更新
+            Clear();
+            enabledFalse(); //マスク処理
         }
 
-        private void dgvCarReports_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+        private void dgvCarReports_Click(object sender, EventArgs e) {
             dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
             cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
             setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            if (dgvCarReports.CurrentCell != null) {
+                btDeleteReport.Enabled = true;
+                btModifyReport.Enabled = true;
+
+            }
         }
 
         private void setSelectedMaker(CarReport.MakerGroup makerGroup) {
@@ -105,5 +145,34 @@ namespace CarReportSystem {
                     break;
             }
         }
+
+        private void enabledFalse() {
+            btDeleteReport.Enabled = false;
+            btModifyReport.Enabled = false;
+        }
+
+        private void Clear() {
+            cbAuthor.Text =　"";
+            cbCarName.Text = "";
+            tbReport.Text = "";
+            pbCarImage.Image = null;
+            setSelectedMaker(CarReport.MakerGroup.トヨタ);
+            dgvCarReports.ClearSelection();
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
+            var vf = new VersionForm();
+            vf.ShowDialog(); //モーダルダイアログ
+        }
+
+        private void btImageDelete_Click(object sender, EventArgs e) {
+            pbCarImage.Image = null;
+        }
+
+       
     }
 }
