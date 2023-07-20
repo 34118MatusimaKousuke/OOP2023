@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private int num = 0;
+
+        //設定情報保存用オブジェクト
+        Settings settings = new Settings();
+
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
@@ -78,6 +84,8 @@ namespace CarReportSystem {
                 pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
 
             }
+            btScaleChange.Enabled = true;
+            btImageDelete.Enabled = true;
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
@@ -97,6 +105,13 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
             enabledFalse(); //マスク処理
+
+            //設定ファイルを逆シリアル化
+            using (var reader = XmlReader.Create("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                var colors = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
+            }
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -161,6 +176,8 @@ namespace CarReportSystem {
         private void enabledFalse() {
             btDeleteReport.Enabled = false;
             btModifyReport.Enabled = false;
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
         }
 
         private void Clear() {
@@ -188,17 +205,22 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 this.BackColor = cdColor.Color;
-
+                settings.MainFormColor = cdColor.Color.ToArgb();
             }
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
+            num = num < 4 ? ((num == 1) ? 3 : ++num) : 0; //AutoSize(2)を除外
+
             pbCarImage.SizeMode = (PictureBoxSizeMode)num;
-            if (num <= 3) {
-                num++;
-            }
-            else {
-                num = 0;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+
+            //設定ファイルのシリアル化
+            using(var writer = XmlWriter.Create("settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer,settings);
             }
         }
     }
