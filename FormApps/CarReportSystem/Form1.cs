@@ -56,6 +56,8 @@ namespace CarReportSystem {
             Clear(); //項目クリア
 
             enabledFalse(); //マスク処理
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
         }
 
         private void setCbCarName(string author) {
@@ -82,10 +84,10 @@ namespace CarReportSystem {
         private void btImageOpen_Click(object sender, EventArgs e) {
             if (ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
                 pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
-
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
             }
-            btScaleChange.Enabled = true;
-            btImageDelete.Enabled = true;
+            
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
@@ -105,6 +107,13 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
             enabledFalse(); //マスク処理
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
+            tsInfoText.Text = "";
+            
+            tsTime.Text = DateTime.Now.ToString("F");
+            tmTimeUpdate.Start();
+
 
             //設定ファイルを逆シリアル化
             using (var reader = XmlReader.Create("settings.xml")) {
@@ -200,6 +209,8 @@ namespace CarReportSystem {
 
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
         }
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -222,6 +233,10 @@ namespace CarReportSystem {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer,settings);
             }
+        }
+
+        private void tmTimeUpdate_Tick(object sender, EventArgs e) {
+            tsTime.Text = DateTime.Now.ToString("F");
         }
     }
 }
