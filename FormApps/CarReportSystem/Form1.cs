@@ -238,5 +238,17 @@ namespace CarReportSystem {
         private void tmTimeUpdate_Tick(object sender, EventArgs e) {
             tsTime.Text = DateTime.Now.ToString("F");
         }
+
+        private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+
+            }
+        }
+
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
+
+            }
+        }
     }
 }
