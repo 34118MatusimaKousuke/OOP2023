@@ -109,7 +109,7 @@ namespace CarReportSystem {
             //設定ファイルを逆シリアル化
             using (var reader = XmlReader.Create("settings.xml")) {
                 var serializer = new XmlSerializer(typeof(Settings));
-                var colors = serializer.Deserialize(reader) as Settings;
+                settings  = serializer.Deserialize(reader) as Settings;
                 BackColor = Color.FromArgb(settings.MainFormColor);
             }
         }
@@ -176,8 +176,8 @@ namespace CarReportSystem {
         private void enabledFalse() {
             btDeleteReport.Enabled = false;
             btModifyReport.Enabled = false;
-            btScaleChange.Enabled = false;
-            btImageDelete.Enabled = false;
+            //btScaleChange.Enabled = false;
+            //btImageDelete.Enabled = false;
         }
 
         private void Clear() {
