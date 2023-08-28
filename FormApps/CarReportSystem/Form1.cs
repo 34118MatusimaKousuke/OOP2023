@@ -114,12 +114,17 @@ namespace CarReportSystem {
             tsTime.Text = DateTime.Now.ToString("F");
             tmTimeUpdate.Start();
 
+            try {
+                //設定ファイルを逆シリアル化
+                using (var reader = XmlReader.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(typeof(Settings));
 
-            //設定ファイルを逆シリアル化
-            using (var reader = XmlReader.Create("settings.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                settings  = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+                    settings = serializer.Deserialize(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -148,6 +153,8 @@ namespace CarReportSystem {
 
                 btDeleteReport.Enabled = true;
                 btModifyReport.Enabled = true;
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
             }
         }
 
