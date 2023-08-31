@@ -116,6 +116,8 @@ namespace CarReportSystem {
             
             tsTime.Text = DateTime.Now.ToString("F");
             tmTimeUpdate.Start();
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.Aquamarine;
+            //dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.Black;
 
             try {
                 //設定ファイルを逆シリアル化
@@ -142,22 +144,6 @@ namespace CarReportSystem {
                 dgvCarReports.Refresh(); //一覧更新
                 Clear();
                 enabledFalse(); //マスク処理
-            }
-        }
-
-        private void dgvCarReports_Click(object sender, EventArgs e) {
-            if (dgvCarReports.RowCount != 0) {
-                dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-
-                btDeleteReport.Enabled = true;
-                btModifyReport.Enabled = true;
-                btScaleChange.Enabled = true;
-                btImageDelete.Enabled = true;
             }
         }
 
@@ -274,16 +260,37 @@ namespace CarReportSystem {
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
 
+                        cbAuthor.Items.Clear();
+                        cbCarName.Items.Clear();
+
+                        Clear();
                         foreach (var s in CarReports) {
                             setCbAuthor(s.Author);
                             setCbCarName(s.CarName);
                         }
-                        dgvCarReports.ClearSelection();
+                        dgvCarReports.Columns[5].Visible = false;
+
                     }
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (dgvCarReports.RowCount != 0) {
+                dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+
+                btDeleteReport.Enabled = true;
+                btModifyReport.Enabled = true;
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
             }
         }
     }
