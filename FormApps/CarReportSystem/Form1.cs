@@ -19,7 +19,7 @@ namespace CarReportSystem {
         private int num = 0;
 
         //設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         public Form1() {
             InitializeComponent();
@@ -292,6 +292,18 @@ namespace CarReportSystem {
                 btScaleChange.Enabled = true;
                 btImageDelete.Enabled = true;
             }
+        }
+
+        private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202314DataSet);
+
+        }
+
+        private void btConnection_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202314DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableTableAdapter.Fill(this.infosys202314DataSet.CarReportTable);
         }
     }
 }
