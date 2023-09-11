@@ -293,12 +293,9 @@ namespace CarReportSystem {
                 cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
 
-                if (!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
-                    pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
-                }
-                else {
-                    pbCarImage.Image = null;
-                }
+                pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)
+                    && ((Byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length != 0 ?
+                    ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
 
                 btDeleteReport.Enabled = true;
                 btModifyReport.Enabled = true;
@@ -319,6 +316,11 @@ namespace CarReportSystem {
             this.carReportTableTableAdapter.Fill(this.infosys202314DataSet.CarReportTable);
 
             dgvCarReports.ClearSelection();
+
+            foreach (var s in infosys202314DataSet.CarReportTable) {
+                setCbAuthor(s.Author);
+                setCbCarName(s.CarName);
+            }
         }
 
         // バイト配列をImageオブジェクトに変換
