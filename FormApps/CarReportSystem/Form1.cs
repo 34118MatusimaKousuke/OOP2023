@@ -113,7 +113,9 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            dgvCarReports.Columns[0].Visible = false;
             dgvCarReports.Columns[6].Visible = false;
+
             enabledFalse(); //マスク処理
             btScaleChange.Enabled = false;
             btImageDelete.Enabled = false;
@@ -307,6 +309,29 @@ namespace CarReportSystem {
             ImageConverter imgconv = new ImageConverter();
             byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
             return b;
+        }
+
+        private void btAuthorSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByAuthor(this.infosys202314DataSet.CarReportTable,tbAuthorSearch.Text);
+        }
+
+        private void btCarNameSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByCarName(this.infosys202314DataSet.CarReportTable,tbCarNameSearch.Text);
+
+        }
+
+        private void btDateSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByDate(this.infosys202314DataSet.CarReportTable, dtpDateSearch.Text);
+        }
+
+        private void btMakerSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByMaker(this.infosys202314DataSet.CarReportTable,tbMakerSearch.Text);
+        }
+
+        private void btReset_Click(object sender, EventArgs e) {
+            tbAuthorSearch.Text = "";
+            tbCarNameSearch.Text = "";
+            tbMakerSearch.Text = "";
         }
     }
 }
