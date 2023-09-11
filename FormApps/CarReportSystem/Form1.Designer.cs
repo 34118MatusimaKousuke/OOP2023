@@ -95,7 +95,6 @@ namespace CarReportSystem {
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.carReportTableBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.label8 = new System.Windows.Forms.Label();
-            this.btConnection = new System.Windows.Forms.Button();
             this.carReportTableTableAdapter = new CarReportSystem.infosys202314DataSetTableAdapters.CarReportTableTableAdapter();
             this.tableAdapterManager = new CarReportSystem.infosys202314DataSetTableAdapters.TableAdapterManager();
             label3 = new System.Windows.Forms.Label();
@@ -491,7 +490,7 @@ namespace CarReportSystem {
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
             this.開くToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.開くToolStripMenuItem.Text = "接続(&O)...";
+            this.開くToolStripMenuItem.Text = "接続(&N)";
             this.開くToolStripMenuItem.Click += new System.EventHandler(this.開くToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -723,16 +722,6 @@ namespace CarReportSystem {
             this.label8.TabIndex = 28;
             this.label8.Text = "日付：";
             // 
-            // btConnection
-            // 
-            this.btConnection.Location = new System.Drawing.Point(49, 523);
-            this.btConnection.Name = "btConnection";
-            this.btConnection.Size = new System.Drawing.Size(67, 66);
-            this.btConnection.TabIndex = 29;
-            this.btConnection.Text = "接続";
-            this.btConnection.UseVisualStyleBackColor = true;
-            this.btConnection.Click += new System.EventHandler(this.btConnection_Click);
-            // 
             // carReportTableTableAdapter
             // 
             this.carReportTableTableAdapter.ClearBeforeFill = true;
@@ -749,7 +738,6 @@ namespace CarReportSystem {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(790, 676);
-            this.Controls.Add(this.btConnection);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.carReportTableBindingNavigator);
             this.Controls.Add(this.btScaleChange);
@@ -865,7 +853,6 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton carReportTableBindingNavigatorSaveItem;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btConnection;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;

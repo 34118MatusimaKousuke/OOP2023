@@ -295,18 +295,6 @@ namespace CarReportSystem {
 
         }
 
-        private void btConnection_Click(object sender, EventArgs e) {
-            // TODO: このコード行はデータを 'infosys202314DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            this.carReportTableTableAdapter.Fill(this.infosys202314DataSet.CarReportTable);
-
-            dgvCarReports.ClearSelection();
-
-            foreach (var s in infosys202314DataSet.CarReportTable) {
-                setCbAuthor(s.Author);
-                setCbCarName(s.CarName);
-            }
-        }
-
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b) {
             ImageConverter imgconv = new ImageConverter();
