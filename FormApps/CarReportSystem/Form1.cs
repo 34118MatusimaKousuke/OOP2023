@@ -321,7 +321,8 @@ namespace CarReportSystem {
         }
 
         private void btDateSearch_Click(object sender, EventArgs e) {
-            carReportTableTableAdapter.FillByDate(this.infosys202314DataSet.CarReportTable, dtpDateSearch.Text);
+
+            carReportTableTableAdapter.FillByDatetoDate(this.infosys202314DataSet.CarReportTable,dtpDateSearch.Text,dtpDateSearch2.Text);
         }
 
         private void btMakerSearch_Click(object sender, EventArgs e) {
@@ -329,9 +330,8 @@ namespace CarReportSystem {
         }
 
         private void btReset_Click(object sender, EventArgs e) {
-            tbAuthorSearch.Text = "";
-            tbCarNameSearch.Text = "";
-            tbMakerSearch.Text = "";
+            this.carReportTableTableAdapter.Fill(this.infosys202314DataSet.CarReportTable);
+
         }
     }
 }
