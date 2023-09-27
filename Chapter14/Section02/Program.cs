@@ -9,7 +9,7 @@ namespace Section02 {
     class Program {
         static void Main(string[] args) {
             var wc = new WebClient();
-            var url = new Uri("http://localhost/example.zip");
+            var url = new Uri("https://www.rimarts.jp/downloads/B2/bk28104j.zip");
             var filename = @"C:\temp\example.zip";
             wc.DownloadProgressChanged += wc_DownloadProgressChanged;
             wc.DownloadFileCompleted += wc_DownloadFileCompleted;
