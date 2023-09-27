@@ -14,6 +14,7 @@ namespace Section02 {
             wc.DownloadProgressChanged += wc_DownloadProgressChanged;
             wc.DownloadFileCompleted += wc_DownloadFileCompleted;
             wc.DownloadFileAsync(url, filename);
+            Console.ReadLine();
         }
 
         static void wc_DownloadProgressChanged(object sender,
