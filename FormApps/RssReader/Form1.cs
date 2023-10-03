@@ -13,6 +13,7 @@ using System.Xml.Linq;
 namespace RssReader {
     public partial class Form1 : Form {
         List<ItemData> ItemDatas = new List<ItemData>();
+        int num = 0;
         public Form1() {
             InitializeComponent();
         }
@@ -33,8 +34,26 @@ namespace RssReader {
         }
 
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
-            var num = lbRssTitle.SelectedIndex;
+            num = lbRssTitle.SelectedIndex;
             wbBrowser.Navigate(ItemDatas[num].Link);
+        }
+
+        private void btNext_Click(object sender, EventArgs e) {
+            num += 1;
+            wbBrowser.Navigate(ItemDatas[num].Link);
+        }
+
+        private void btBack_Click(object sender, EventArgs e) {
+            num -= 1;
+            wbBrowser.Navigate(ItemDatas[num].Link);
+        }
+
+        private void btGoBack_Click(object sender, EventArgs e) {
+            wbBrowser.GoBack();
+        }
+
+        private void btGoNext_Click(object sender, EventArgs e) {
+            wbBrowser.GoForward();
         }
     }
 }

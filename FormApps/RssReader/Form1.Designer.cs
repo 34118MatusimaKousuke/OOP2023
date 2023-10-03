@@ -28,6 +28,10 @@ namespace RssReader {
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
+            this.btBack = new System.Windows.Forms.Button();
+            this.btNext = new System.Windows.Forms.Button();
+            this.btGoBack = new System.Windows.Forms.Button();
+            this.btGoNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -54,24 +58,67 @@ namespace RssReader {
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(35, 50);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(943, 160);
+            this.lbRssTitle.Size = new System.Drawing.Size(786, 160);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
             // wbBrowser
             // 
-            this.wbBrowser.Location = new System.Drawing.Point(35, 225);
+            this.wbBrowser.Location = new System.Drawing.Point(35, 216);
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(943, 358);
+            this.wbBrowser.Size = new System.Drawing.Size(786, 358);
             this.wbBrowser.TabIndex = 3;
+            // 
+            // btBack
+            // 
+            this.btBack.Location = new System.Drawing.Point(844, 87);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(134, 31);
+            this.btBack.TabIndex = 5;
+            this.btBack.Text = "前の記事";
+            this.btBack.UseVisualStyleBackColor = true;
+            // 
+            // btNext
+            // 
+            this.btNext.Location = new System.Drawing.Point(844, 50);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(134, 31);
+            this.btNext.TabIndex = 6;
+            this.btNext.Text = "次の記事";
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // btGoBack
+            // 
+            this.btGoBack.Location = new System.Drawing.Point(844, 216);
+            this.btGoBack.Name = "btGoBack";
+            this.btGoBack.Size = new System.Drawing.Size(134, 31);
+            this.btGoBack.TabIndex = 7;
+            this.btGoBack.Text = "戻る";
+            this.btGoBack.UseVisualStyleBackColor = true;
+            this.btGoBack.Click += new System.EventHandler(this.btGoBack_Click);
+            // 
+            // btGoNext
+            // 
+            this.btGoNext.Location = new System.Drawing.Point(844, 253);
+            this.btGoNext.Name = "btGoNext";
+            this.btGoNext.Size = new System.Drawing.Size(134, 31);
+            this.btGoNext.TabIndex = 8;
+            this.btGoNext.Text = "進む";
+            this.btGoNext.UseVisualStyleBackColor = true;
+            this.btGoNext.Click += new System.EventHandler(this.btGoNext_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 595);
+            this.Controls.Add(this.btGoNext);
+            this.Controls.Add(this.btGoBack);
+            this.Controls.Add(this.btNext);
+            this.Controls.Add(this.btBack);
             this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
@@ -89,6 +136,10 @@ namespace RssReader {
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
         private System.Windows.Forms.WebBrowser wbBrowser;
+        private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btNext;
+        private System.Windows.Forms.Button btGoBack;
+        private System.Windows.Forms.Button btGoNext;
     }
 }
 
