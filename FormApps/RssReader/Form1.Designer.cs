@@ -79,6 +79,7 @@ namespace RssReader {
             this.btBack.TabIndex = 5;
             this.btBack.Text = "前の記事";
             this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
             // btNext
             // 

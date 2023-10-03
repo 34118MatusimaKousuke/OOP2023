@@ -40,11 +40,13 @@ namespace RssReader {
 
         private void btNext_Click(object sender, EventArgs e) {
             num += 1;
+            lbRssTitle.SelectedIndex += 1;
             wbBrowser.Navigate(ItemDatas[num].Link);
         }
 
         private void btBack_Click(object sender, EventArgs e) {
             num -= 1;
+            lbRssTitle.SelectedIndex -= 1;
             wbBrowser.Navigate(ItemDatas[num].Link);
         }
 
@@ -55,5 +57,7 @@ namespace RssReader {
         private void btGoNext_Click(object sender, EventArgs e) {
             wbBrowser.GoForward();
         }
+
+     
     }
 }
