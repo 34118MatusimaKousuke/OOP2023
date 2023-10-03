@@ -22,14 +22,12 @@ namespace RssReader {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
-                var nodes = xdoc.Root.Descendants("item").Select(s => new ItemData {
+                ItemDatas = xdoc.Root.Descendants("item").Select(s => new ItemData {
                     Title = (string)s.Element("title"),
                     Link = (string)s.Element("link")
-                });
-
-                foreach (var s in nodes) {
+                }).ToList();
+                foreach (var s in ItemDatas) {
                     lbRssTitle.Items.Add(s.Title);
-                    ItemDatas.Add(s);
                 }
             }
         }
