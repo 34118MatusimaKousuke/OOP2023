@@ -19,7 +19,12 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+            if (tbUrl.Text == "") {
+                return;
+            }
             using (var wc = new WebClient()) {
+                lbRssTitle.Items.Clear();
+
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
@@ -39,12 +44,18 @@ namespace RssReader {
         }
 
         private void btNext_Click(object sender, EventArgs e) {
+            if (num == lbRssTitle.Items.Count) {
+                return;
+            }
             num += 1;
             lbRssTitle.SelectedIndex += 1;
             wbBrowser.Navigate(ItemDatas[num].Link);
         }
 
         private void btBack_Click(object sender, EventArgs e) {
+            if (num < 1) {
+                return;
+            }
             num -= 1;
             lbRssTitle.SelectedIndex -= 1;
             wbBrowser.Navigate(ItemDatas[num].Link);
@@ -58,6 +69,8 @@ namespace RssReader {
             wbBrowser.GoForward();
         }
 
-     
+        private void btDelete_Click(object sender, EventArgs e) {
+            tbUrl.ResetText();
+        }
     }
 }

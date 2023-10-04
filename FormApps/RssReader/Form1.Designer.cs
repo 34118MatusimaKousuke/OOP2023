@@ -32,6 +32,7 @@ namespace RssReader {
             this.btNext = new System.Windows.Forms.Button();
             this.btGoBack = new System.Windows.Forms.Button();
             this.btGoNext = new System.Windows.Forms.Button();
+            this.btDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -39,12 +40,12 @@ namespace RssReader {
             this.tbUrl.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbUrl.Location = new System.Drawing.Point(35, 13);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(786, 31);
+            this.tbUrl.Size = new System.Drawing.Size(628, 31);
             this.tbUrl.TabIndex = 0;
             // 
             // btGet
             // 
-            this.btGet.Location = new System.Drawing.Point(844, 13);
+            this.btGet.Location = new System.Drawing.Point(687, 12);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(134, 31);
             this.btGet.TabIndex = 1;
@@ -111,11 +112,22 @@ namespace RssReader {
             this.btGoNext.UseVisualStyleBackColor = true;
             this.btGoNext.Click += new System.EventHandler(this.btGoNext_Click);
             // 
+            // btDelete
+            // 
+            this.btDelete.Location = new System.Drawing.Point(844, 12);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(134, 31);
+            this.btDelete.TabIndex = 9;
+            this.btDelete.Text = "削除";
+            this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 595);
+            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btGoNext);
             this.Controls.Add(this.btGoBack);
             this.Controls.Add(this.btNext);
@@ -141,6 +153,7 @@ namespace RssReader {
         private System.Windows.Forms.Button btNext;
         private System.Windows.Forms.Button btGoBack;
         private System.Windows.Forms.Button btGoNext;
+        private System.Windows.Forms.Button btDelete;
     }
 }
 
