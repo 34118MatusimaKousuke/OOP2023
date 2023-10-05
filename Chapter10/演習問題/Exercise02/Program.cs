@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Exercise02 {
@@ -13,10 +14,10 @@ namespace Exercise02 {
 
         private static void Pickup3DigitNumber(string file) {
             foreach (var line in File.ReadLines(file)) {
-         
-
-
-
+                var matches = Regex.Matches(line, @"\b\d{3,}\b");
+                foreach (var s in matches) {
+                    Console.WriteLine(s);
+                }
             }
         }
     }
