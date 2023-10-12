@@ -88,7 +88,25 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
+            var books = Library.Books
+               .Where(x => x.CategoryId == 1)
+               .Join(Library.Categories,
+               book => book.CategoryId,
+               category => category.Id,
+               (book, category) => new {
+                   Title = book.Title,
+                   Category = category.Name,
+                   PublishedYear = book.PublishedYear,
+                   Price = book.Price
+               }
+               );
+            foreach (var s in books.GroupBy(x => x.PublishedYear).OrderBy(x => x.Key)) {
+                Console.WriteLine("#{0}",s.Key);
+                foreach (var n in s) {
+                    Console.WriteLine("  {0}",n.Title);
+                }
 
+            }
         }
 
         private static void Exercise1_8() {
