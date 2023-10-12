@@ -60,16 +60,52 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
+            var books = Library.Books
+                .Where(b => b.PublishedYear == 2016)
+                .Join(Library.Categories,
+                book => book.CategoryId,
+                category => category.Id,
+                (book, category) => category.Name)
+                .Distinct();
 
+            foreach (var s in books) {
+                Console.WriteLine(s);
+            }
         }
 
         private static void Exercise1_6() {
+            var groups = Library.Categories
+                .GroupJoin(Library.Books,
+                c => c.Id,
+                b => b.CategoryId,
+                (c, books) => new { Category = c.Name, Books = books }).OrderBy(x => x.Category);
+            foreach (var s in groups) {
+                Console.WriteLine("#{0}",s.Category);
+                foreach (var n in s.Books) {
+                    Console.WriteLine("   {0}",n.Title);
+                }
+            }
         }
 
         private static void Exercise1_7() {
+
         }
 
         private static void Exercise1_8() {
+            var groups = Library.Categories
+                .GroupJoin(Library.Books,
+                c => c.Id,
+                b => b.CategoryId,
+                (c, books) => new {
+                    Category = c.Name,
+                    Count = books.Count(),
+                });
+
+            foreach (var s in groups) {
+                if (s.Count >=4) {
+                  Console.WriteLine(s.Category);
+                }
+            }
         }
     }
 }
