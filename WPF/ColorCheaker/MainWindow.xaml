@@ -30,17 +30,17 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="R" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
             <Slider x:Name="rSlider" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" TickPlacement="TopLeft" Width="130"  Maximum="255" ValueChanged="Slider_ValueChanged" />
             <TextBox x:Name="rValue" Grid.Row="0" Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Margin="10,0,0,0" Width="36"  
-                     Text="{Binding Value, ElementName=rSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=OneWay}" />
+                     Text="{Binding Value, ElementName=rSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="G" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
             <Slider x:Name="gSlider" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" TickPlacement="TopLeft" Width="130" Maximum="255" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="gValue" Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Margin="10,0,0,0" Width="36"  
-                     Text="{Binding Value, ElementName=gSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=OneWay}" />
+                     Text="{Binding Value, ElementName=gSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=TwoWay}" />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="B" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
             <Slider x:Name="bSlider" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" TickPlacement="TopLeft" Width="130" Maximum="255" ValueChanged="Slider_ValueChanged"/>
             <TextBox x:Name="bValue" Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Margin="10,0,0,0" Width="36"  
-                     Text="{Binding Value, ElementName=bSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=OneWay}" />
+                     Text="{Binding Value, ElementName=bSlider, UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:0}, Mode=TwoWay}" />
             <ComboBox x:Name="ColorData" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"   VerticalAlignment="Center" Width="120"
                       ItemsSource="{Binding}" SelectedValue="{Binding Color}" SelectionChanged="ComboBox_SelectionChanged" >
                 <ComboBox.ItemTemplate>

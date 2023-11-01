@@ -21,7 +21,6 @@ namespace ColorCheaker {
     /// </summary>
     public partial class MainWindow : Window {
 
-
         public MainWindow() {
             InitializeComponent();
             ColorData.DataContext = GetColorList();
@@ -29,13 +28,8 @@ namespace ColorCheaker {
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
 
-            var color = new StackColor() {
-                R = (int)rSlider.Value,
-                G = (int)gSlider.Value,
-                B = (int)bSlider.Value
-            };
-            stockList.Items.Add("R:" + color.R + "G:" + color.G + "B:" + color.B);
-
+            var color = String.Format("R {0} B {1} G {2}",rSlider.Value,gSlider.Value,bSlider.Value);
+            stockList.Items.Add(color);
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
@@ -78,7 +72,10 @@ namespace ColorCheaker {
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            string[] Stock = stockList.SelectedItem.ToString().Split(' ');
+            rValue.Text = Stock[1];
+            gValue.Text = Stock[3];
+            bValue.Text = Stock[5];
         }
     }
 }
